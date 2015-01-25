@@ -22,17 +22,15 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
 					<Add directory="../../../../../CodeBlocks/SDL-1.2.15/include" />
-					<Add directory="../WorldAPI" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add option="-lmingw32" />
 					<Add option="-lSDLmain" />
 					<Add option="-lSDL" />
-					<Add library="..\WorldAPI\bin\Release\libWorldAPI.a" />
 					<Add directory="../../../../../CodeBlocks/SDL-1.2.15/lib" />
-					<Add directory="../WorldAPI/bin/Release" />
 				</Linker>
 			</Target>
 		</Build>
@@ -40,7 +38,22 @@
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/include" />
 		</Compiler>
+		<Linker>
+			<Add option="-lmingw32" />
+			<Add option="-lSDLmain" />
+			<Add option="-lSDL" />
+			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/lib" />
+		</Linker>
+		<Unit filename="WorldAPI/Entite.cpp" />
+		<Unit filename="WorldAPI/Entite.h" />
+		<Unit filename="WorldAPI/Monde.cpp" />
+		<Unit filename="WorldAPI/Monde.h" />
+		<Unit filename="WorldAPI/MondeGraph.cpp" />
+		<Unit filename="WorldAPI/MondeGraph.h" />
+		<Unit filename="WorldAPI/Point.cpp" />
+		<Unit filename="WorldAPI/Point.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
