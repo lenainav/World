@@ -27,12 +27,9 @@ int main(int argc, char** argv)
 
     monde.Screen = screen;
     monde.draw(screen);
-    //SDL_Flip(screen);
 
     while (ctn)
     {
-
-
         SDL_WaitEvent(&event);
 
         if (event.type == SDL_QUIT)

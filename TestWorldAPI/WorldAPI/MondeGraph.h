@@ -24,7 +24,6 @@ class MondeGraph : Monde
     private:
 
         Point TileSize;
-        std::map<int, SDL_Surface> TileColor;
         SDL_Surface *Tileset;
 
         void createNewTile(int key);

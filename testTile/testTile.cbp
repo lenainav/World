@@ -33,7 +33,6 @@
 			<Add directory="C:/CodeBlocks/SDL-1.2.15/include" />
 		</Compiler>
 		<Linker>
-			<Add library="mingw32" />
 			<Add library="SDLmain" />
 			<Add library="SDL.dll" />
 			<Add library="user32" />

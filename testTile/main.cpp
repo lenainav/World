@@ -1,13 +1,14 @@
 #include <SDL/SDL.h>
-
-#pragma comment (lib,"sdl.lib")      // ignorez ces lignes si vous ne linkez pas les libs de cette façon.
-#pragma comment (lib,"sdlmain.lib")
+#include <stdlib.h>
 
 #define LARGEUR_TILE 24  // hauteur et largeur des tiles.
 #define HAUTEUR_TILE 16
 
 #define NOMBRE_BLOCS_LARGEUR 15  // nombre a afficher en x et y
 #define NOMBRE_BLOCS_HAUTEUR 13
+
+#define NBR_TILE 10
+
 
 char* table[] = {
 "000000000000000",
@@ -23,6 +24,18 @@ char* table[] = {
 "005600000000000",
 "005600000000000",
 "777777777777777"};
+
+void creerTile(SDL_Surface *tileset, int key)
+{
+    int r = rand() % 255, g = rand() % 255, b = rand() % 255;
+    SDL_Rect dest = {0};
+    dest.h = HAUTEUR_TILE;
+    dest.w = LARGEUR_TILE;
+    dest.x = key * LARGEUR_TILE;
+
+
+    SDL_FillRect(tileset, &dest, SDL_MapRGB(tileset->format, r, g, b));
+}
 
 
 void Afficher(SDL_Surface* screen,SDL_Surface* tileset,char** table,int nombre_blocs_largeur,int nombre_blocs_hauteur)
@@ -53,10 +66,14 @@ int main(int argc,char** argv)
 	SDL_Init(SDL_INIT_VIDEO);		// prepare SDL
 	screen = SDL_SetVideoMode(LARGEUR_TILE*NOMBRE_BLOCS_LARGEUR, HAUTEUR_TILE*NOMBRE_BLOCS_HAUTEUR, 8,SDL_HWSURFACE|SDL_DOUBLEBUF);
 
+    srand(NULL);
+
     tileset = SDL_CreateRGBSurface(SDL_HWSURFACE, 192, 16, 8, 0, 255, 255, 0);
     SDL_Rect dst = {0,0, 192, 16};
     SDL_FillRect(tileset, &dst, SDL_MapRGB(screen->format, 255, 0, 0));
 
+    for (int i = 0; i < NBR_TILE; i++)
+        creerTile(tileset, i);
 
 	/*tileset = SDL_LoadBMP("tileset1.bmp");
     */if (!tileset)

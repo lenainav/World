@@ -35,14 +35,12 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/include" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32" />
-			<Add option="-lSDLmain" />
 			<Add option="-lSDL" />
 			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/lib" />
 		</Linker>
