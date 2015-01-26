@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL/SDL.h>
 #include "WorldAPI/MondeGraph.h"
+#include "WorldAPI/EntiteGraph.h"
 
 #define NTX 10
 #define NTY 10
@@ -18,23 +19,55 @@ int main(int argc, char** argv)
     SDL_Surface *screen;
     SDL_Event event;
     MondeGraph monde;
+    EntiteGraph entite;
     bool ctn = true;
 
     monde.setTileSize(Point(STX, STY));
     monde.generate(NTX, NTY, 10);
+    cout << "\nx:" << entite.World->getSize().x << " y:" << entite.World->getSize().y;
+
+    entite.World = &monde;
+    entite.create();
 
     screen = SDL_SetVideoMode(NTX * STX, NTY * STY, 8, SDL_HWSURFACE);
 
-    monde.Screen = screen;
-    monde.draw(screen);
+
 
     while (ctn)
     {
         SDL_WaitEvent(&event);
 
-        if (event.type == SDL_QUIT)
+        switch(event.type)
+        {
+        case SDL_QUIT:
             ctn = false;
+            break;
 
+        case SDL_KEYDOWN:
+            switch(event.key.keysym.sym)
+            {
+            case SDLK_UP:
+                entite.moveTop();
+                break;
+            case SDLK_DOWN:
+                entite.moveBottom();
+                break;
+            case SDLK_LEFT:
+                entite.moveLeft();
+                break;
+            case SDLK_RIGHT:
+                entite.moveRight();
+                break;
+            default:
+                break;
+            }
+
+        }
+
+        SDL_FillRect(screen, NULL, 0x000000);
+        monde.draw(screen);
+        entite.draw(screen);
+        SDL_Flip(screen);
     }
 
     SDL_FreeSurface(screen);

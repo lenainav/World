@@ -20,78 +20,51 @@ MondeGraph::~MondeGraph()
 
 void MondeGraph::generate(int sx, int sy, int entite)
 {
-    Monde::generate(sx, sy, entite);
-    //TileSize = Point(sx, sy);
+    Monde::generate(sx, sy, entite); //generation du monde
 
-    Tileset = SDL_CreateRGBSurface(SDL_HWSURFACE, TileSize.x * entite, TileSize.y, 8, 255, 0, 0, 0);
+    Tileset = SDL_CreateRGBSurface(SDL_HWSURFACE, TileSize.x * entite, TileSize.y, 8, 255, 0, 0, 0); //creation du tileset
 
-    for (int i = 0; i < ListKey.size(); i++) //création des surfaces
+    for (int i = 0; i < ListKey.size(); i++) //création des surfaces correspondant a chaque entite
         createNewTile(ListKey.at(i));
 }
 
 
 void MondeGraph::draw(SDL_Surface *screen)
 {
-    SDL_Rect dest = {0};
+    if (screen != NULL) //changement de screen
+        Screen = screen;
+
+    if (Screen == NULL) //si pas de sceen pas de dessin possible
+        return;
+
+    SDL_Rect dest = {0}; //init des vars
     SDL_Rect src = {0};
 
     src.w = dest.w = TileSize.x;
     src.h = dest.h = TileSize.y;
 
-    for(int x = 0; x < Size.x; x++)
+    for(int x = 0; x < Size.x; x++) //parcours du monde
     {
         for (int y = 0; y < Size.y; y++)
         {
-
-            dest.x = x * TileSize.x;
+            dest.x = x * TileSize.x; //def de la destination
             dest.y = y * TileSize.y;
 
             src.x = World[x][y] * TileSize.x;
 
-            SDL_BlitSurface(Tileset, &src, screen, &dest);
-
-            /*SDL_BlitSurface(&TileColor.at(World[x][y]),
-                            &src,
-                            Screen,
-                            &dest
-                            );*/
-
+            SDL_BlitSurface(Tileset, &src, Screen, &dest); //blit a l'ecran
         }
     }
 
-    SDL_Flip(Screen);
+    SDL_Flip(Screen); ///!!!Possiblement a enlever, a independament
 }
 
 void MondeGraph::createNewTile(int key)
 {
-    std::cout << "\nTry " << key;
-
-    int red = rand()%255, green = rand()%255, blue = rand()%255;
-    bool alone = true;
-    //SDL_Surface *tile;
-    SDL_Rect dest = {0};
+    int red = rand()%255, green = rand()%255, blue = rand()%255; //init couleurs
+    SDL_Rect dest = {0}; //init dest
     dest.h = TileSize.y; dest.w = TileSize.x;
     dest.x = key * TileSize.x;
 
-    /*do
-    {
-        red = rand() % 255;
-        green = rand()% 255;
-        blue = rand() % 255;
-
-        for (int i = 0; i < ListKey.size(); i++)
-        {
-            if (    TileColor.at(ListKey.at(i)).format->Rmask == red
-                &&  TileColor.at(ListKey.at(i)).format->Bmask == blue
-                &&  TileColor.at(ListKey.at(i)).format->Gmask == green)
-            {
-                alone = false;
-            }
-        }
-
-    }while(!alone); */
-
-    SDL_FillRect(Tileset, &dest, SDL_MapRGB(Tileset->format, red, green, blue));
-
-    std::cout << " Succes\n";
+    SDL_FillRect(Tileset, &dest, SDL_MapRGB(Tileset->format, red, green, blue)); //remplissage
 }

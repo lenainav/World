@@ -2,15 +2,18 @@
 #define ENTITEGRAPH_H
 
 #include "Entite.h"
+#include "MondeGraph.h"
 #include <SDL/SDL.h>
 
-class EntiteGraph : Entite
+class EntiteGraph : public Entite
 {
     public:
         EntiteGraph();
         virtual ~EntiteGraph();
 
         SDL_Surface *Screen;
+        MondeGraph *World;
+
 
 
         virtual void create();
@@ -23,9 +26,10 @@ class EntiteGraph : Entite
         SDL_Surface *Graph;
         SDL_Rect RealPos;
 
-        void setrp();
+        SDL_Rect setrp();
 
     private:
+
 };
 
 #endif // ENTITEGRAPH_H

@@ -5,7 +5,7 @@
 #include <SDL/SDL.h>
 #include <map>
 
-class MondeGraph : Monde
+class MondeGraph : public Monde
 {
     public:
         MondeGraph();
@@ -13,10 +13,10 @@ class MondeGraph : Monde
 
         virtual void generate(int x, int y, int entite);
 
-        virtual void draw(SDL_Surface *screen);
+        virtual void draw(SDL_Surface *screen = NULL);
 
         virtual void setTileSize(Point sz) {TileSize = sz;}
-        virtual void getTileSize() {return TileSize;}
+        virtual Point getTileSize() {return TileSize;}
 
         SDL_Surface *Screen;
 
