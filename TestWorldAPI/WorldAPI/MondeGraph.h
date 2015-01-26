@@ -16,6 +16,7 @@ class MondeGraph : Monde
         virtual void draw(SDL_Surface *screen);
 
         virtual void setTileSize(Point sz) {TileSize = sz;}
+        virtual void getTileSize() {return TileSize;}
 
         SDL_Surface *Screen;
 
