@@ -4,10 +4,13 @@
 #include <cstdlib>
 #include <vector>
 
+#include <iostream>
+
 MondeGraph::MondeGraph()
     : Monde()
 {
     //ctor
+    srand(NULL);
 }
 
 MondeGraph::~MondeGraph()
@@ -17,81 +20,51 @@ MondeGraph::~MondeGraph()
 
 void MondeGraph::generate(int sx, int sy, int entite)
 {
-    Monde::generate(sx, sy, entite);
-    std::vector<int> entitePresent;
+    Monde::generate(sx, sy, entite); //generation du monde
 
-    for (int x = 0; x < sx; x++) //parcours du monde
-    {
-        for (int y = 0; y < sy; y++)
-        {
-            bool pr = false; //test si la tile a deja été référencer
+    Tileset = SDL_CreateRGBSurface(SDL_HWSURFACE, TileSize.x * entite, TileSize.y, 8, 255, 0, 0, 0); //creation du tileset
 
-            for (int i = 0; i < entitePresent.size(); i++)
-            {
-                if (entitePresent.at(i) == World[x][y])
-                {
-                    pr = true;
-                    break;
-                }
-            }
-
-            if (pr)
-                entitePresent.push_back(World[x][y]);
-        }
-    }
-
-    for (int i = 0; i < entitePresent.size(); i++) //création des surfaces
-        createNewTile(entitePresent.at(i));
-
+    for (int i = 0; i < ListKey.size(); i++) //création des surfaces correspondant a chaque entite
+        createNewTile(ListKey.at(i));
 }
 
 
-void MondeGraph::draw()
+void MondeGraph::draw(SDL_Surface *screen)
 {
-    for(int x = 0; x < Size.x; x++)
+    if (screen != NULL) //changement de screen
+        Screen = screen;
+
+    if (Screen == NULL) //si pas de sceen pas de dessin possible
+        return;
+
+    SDL_Rect dest = {0}; //init des vars
+    SDL_Rect src = {0};
+
+    src.w = dest.w = TileSize.x;
+    src.h = dest.h = TileSize.y;
+
+    for(int x = 0; x < Size.x; x++) //parcours du monde
     {
         for (int y = 0; y < Size.y; y++)
         {
-            SDL_Rect dest = {0, 0, x * TileSize.x, y * TileSize.y};
-            SDL_Rect src = {0,0, TileSize.x, TileSize.y};
+            dest.x = x * TileSize.x; //def de la destination
+            dest.y = y * TileSize.y;
 
-            SDL_BlitSurface(&TileColor.at(World[x][y]),
-                            &src,
-                            Screen,
-                            &dest
-                            );
+            src.x = World[x][y] * TileSize.x;
+
+            SDL_BlitSurface(Tileset, &src, Screen, &dest); //blit a l'ecran
         }
     }
+
+    SDL_Flip(Screen); ///!!!Possiblement a enlever, a independament
 }
 
 void MondeGraph::createNewTile(int key)
 {
-    int red, green, blue;
-    bool alone = true;
-    SDL_Surface *tile;
+    int red = rand()%255, green = rand()%255, blue = rand()%255; //init couleurs
+    SDL_Rect dest = {0}; //init dest
+    dest.h = TileSize.y; dest.w = TileSize.x;
+    dest.x = key * TileSize.x;
 
-    do
-    {
-        red = rand() % 255;
-        green = rand()% 255;
-        blue = rand() % 255;
-
-        if (TileColor.size() > 500)
-            break;
-
-        for (int i = 0; i < TileColor.size(); i++)
-        {
-            if (    TileColor.at(i).format->Rmask == red
-                &&  TileColor.at(i).format->Bmask == blue
-                &&  TileColor.at(i).format->Gmask == green)
-            {
-                alone = false;
-            }
-        }
-
-    }while(!alone);
-
-    tile = SDL_CreateRGBSurface(SDL_HWSURFACE, TileSize.x, TileSize.y, 32, red, green, blue, 0);
-
-    TileColor.insert(std::pair<int, SDL_Surface>(key, *tile));
+    SDL_FillRect(Tileset, &dest, SDL_MapRGB(Tileset->format, red, green, blue)); //remplissage
 }

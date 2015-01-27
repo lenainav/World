@@ -24,10 +24,15 @@ int main(int argc, char** argv)
 
     monde.setTileSize(Point(STX, STY));
     monde.generate(NTX, NTY, 10);
+
+    //entite.World = &monde;
+    entite.World = &monde;
+    entite.WorldSize = monde.getSize();
+    entite.create();
+
     cout << "\nx:" << entite.World->getSize().x << " y:" << entite.World->getSize().y;
 
-    entite.World = &monde;
-    entite.create();
+
 
     screen = SDL_SetVideoMode(NTX * STX, NTY * STY, 8, SDL_HWSURFACE);
 

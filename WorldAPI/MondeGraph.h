@@ -5,7 +5,7 @@
 #include <SDL/SDL.h>
 #include <map>
 
-class MondeGraph : Monde
+class MondeGraph : public Monde
 {
     public:
         MondeGraph();
@@ -13,7 +13,11 @@ class MondeGraph : Monde
 
         virtual void generate(int x, int y, int entite);
 
-        virtual void draw();
+        virtual void draw(SDL_Surface *screen = NULL);
+
+        virtual void setTileSize(Point sz) {TileSize = sz;}
+        virtual Point getTileSize() {return TileSize;}
+
 
         SDL_Surface *Screen;
 
@@ -22,9 +26,9 @@ class MondeGraph : Monde
     private:
 
         Point TileSize;
-        std::map<int, SDL_Surface> TileColor;
+        SDL_Surface *Tileset;
 
-        void createNewTile(int key);
+        void createNewTile(int key); //crée graphiquement une tile dans le Tileset, 0 < key < EntitePossible
 
 };
 

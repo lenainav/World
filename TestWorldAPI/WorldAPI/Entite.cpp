@@ -20,7 +20,7 @@ bool Entite::moveLeft()
     Pos.x--;
     if (Pos.x < 0)
     {
-        Pos.x = 0;
+        Pos.x = WorldSize.x -1;
         return false;
     }
 
@@ -30,10 +30,9 @@ bool Entite::moveLeft()
 bool Entite::moveRight()
 {
     Pos.x++;
-    if (Pos.x > World->getSize().x)
+    if (Pos.x >= WorldSize.x)
     {
-        Pos.x = World->getSize().x;
-        //printf("x:%d\n", Pos.x);
+        Pos.x = 0;
         return false;
     }
 
@@ -45,7 +44,7 @@ bool Entite::moveTop()
     Pos.y--;
     if (Pos.y < 0)
     {
-        Pos.y = 0;
+        Pos.y = WorldSize.y -1;
         return false;
     }
 
@@ -55,9 +54,8 @@ bool Entite::moveTop()
 bool Entite::moveBottom()
 {
     Pos.y++;
-    printf("\ny:%d sy:%d", Pos.y, World->getSize().y);
 
-    if (Pos.y > World->getSize().y)
+    if (Pos.y >= WorldSize.y)
     {
         Pos.y = 0;
         return false;

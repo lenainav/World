@@ -23,11 +23,11 @@ void Monde::create(int x, int y)
 {
     Size = Point(x, y);
 
-    World =(int**) malloc(x * sizeof(int*));
+    World =(int**) malloc(x * sizeof(int*)); //malloc des x
     if (World == NULL)
         exit(-1);
 
-    for(int i = 0; i < x; i++)
+    for(int i = 0; i < x; i++) //pour chaque x, malloc des y
     {
         World[i] = (int*) malloc(y * sizeof(int));
 
@@ -41,8 +41,9 @@ void Monde::generate(int sx, int sy, int entite)
 {
     int tile;
     create(sx, sy);
+    EntitePossible = entite;
 
-    for (int x = 0; x < Size.x; x++)
+    for (int x = 0; x < Size.x; x++) //generation aleatiore
     {
         for (int y = 0; y < Size.y; y++)
         {
@@ -52,7 +53,7 @@ void Monde::generate(int sx, int sy, int entite)
         }
     }
 
-    listKey();
+    listKey(); //def de toutes les elemes générer
     Monde::draw();
 }
 
@@ -63,7 +64,7 @@ Monde::~Monde()
 
 void Monde::draw()
 {
-    for (int y = 0; y < Size.y; y++)
+    for (int y = 0; y < Size.y; y++) //dessin console
     {
         for (int x = 0; x < Size.x; x++)
         {
@@ -71,20 +72,15 @@ void Monde::draw()
         }
         std::cout << "\n";
     }
-
-    std::cout << "LK:";
-    for (int i = 0; i < ListKey.size(); i++)
-        std::cout << ListKey.at(i) << " ";
-
 }
 
 void Monde::listKey()
 {
-    for (int x = 0; x < Size.x; x++)
+    for (int x = 0; x < Size.x; x++) //parcours du monde
     {
         for (int y = 0; y < Size.y; y++)
         {
-            bool find = false;
+            bool find = false; //test si déja lister
 
             for (int i = 0; i < ListKey.size(); i++)
             {
@@ -95,7 +91,7 @@ void Monde::listKey()
                 }
             }
 
-            if (!find)
+            if (!find) //sinon ajout
                 ListKey.push_back(World[x][y]);
         }
     }

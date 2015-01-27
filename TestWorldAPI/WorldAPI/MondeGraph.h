@@ -18,6 +18,7 @@ class MondeGraph : public Monde
         virtual void setTileSize(Point sz) {TileSize = sz;}
         virtual Point getTileSize() {return TileSize;}
 
+
         SDL_Surface *Screen;
 
 
@@ -27,7 +28,7 @@ class MondeGraph : public Monde
         Point TileSize;
         SDL_Surface *Tileset;
 
-        void createNewTile(int key);
+        void createNewTile(int key); //crée graphiquement une tile dans le Tileset, 0 < key < EntitePossible
 
 };
 

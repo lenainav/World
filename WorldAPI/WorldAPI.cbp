@@ -49,6 +49,8 @@
 		</Linker>
 		<Unit filename="Entite.cpp" />
 		<Unit filename="Entite.h" />
+		<Unit filename="EntiteGraph.cpp" />
+		<Unit filename="EntiteGraph.h" />
 		<Unit filename="Monde.cpp" />
 		<Unit filename="Monde.h" />
 		<Unit filename="MondeGraph.cpp" />

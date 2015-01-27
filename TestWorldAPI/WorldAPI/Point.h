@@ -2,7 +2,7 @@
 #define POINT_H
 
 
-class Point
+class Point //Un Point.
 {
     public:
         Point();

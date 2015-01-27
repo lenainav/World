@@ -31,10 +31,14 @@ class Monde
     protected:
 
         int **World;
+        std::vector<int> ListKey;
+        int EntitePossible;
 
         Point Size;
 
     private:
+        void listKey();
+
 
 
 

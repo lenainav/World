@@ -11,6 +11,7 @@ class Entite
         virtual ~Entite();
 
         Monde *World;
+        Point WorldSize; //le pointeur du World marche mais pas pour getSize() donc...
 
         Point Pos;
         int Key;

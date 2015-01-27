@@ -32,6 +32,7 @@ class Monde
 
         int **World;
         std::vector<int> ListKey;
+        int EntitePossible;
 
         Point Size;
 
