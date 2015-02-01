@@ -2,11 +2,12 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <ctime>
 
 Monde::Monde()
 {
     //ctor
-    srand(NULL);
+    srand(time(NULL));
 }
 
 Monde::Monde(int x, int y)
@@ -39,7 +40,6 @@ void Monde::create(int x, int y)
 
 void Monde::generate(int sx, int sy, int entite)
 {
-    int tile;
     create(sx, sy);
     EntitePossible = entite;
 
@@ -47,13 +47,12 @@ void Monde::generate(int sx, int sy, int entite)
     {
         for (int y = 0; y < Size.y; y++)
         {
-            tile = rand() % entite;
 
-            World[x][y] = tile;
+            World[x][y] = rand() % entite;
         }
     }
 
-    listKey(); //def de toutes les elemes générer
+    listKey(); //def de toutes les elemes gÃ©nÃ©rer
     Monde::draw();
 }
 
@@ -80,7 +79,7 @@ void Monde::listKey()
     {
         for (int y = 0; y < Size.y; y++)
         {
-            bool find = false; //test si déja lister
+            bool find = false; //test si dÃ©ja lister
 
             for (int i = 0; i < ListKey.size(); i++)
             {
@@ -95,4 +94,29 @@ void Monde::listKey()
                 ListKey.push_back(World[x][y]);
         }
     }
+}
+
+std::map<int, int>  Monde::getRepartition()
+{
+    std::map<int, int> rep;
+
+
+    for (int k = 0; k < ListKey.size(); k++)
+    {
+        int n = 0;
+
+        for (int x = 0; x < Size.x; x++)
+        {
+            for (int y = 0; y < Size.y; y++)
+            {
+                if (World[x][y] == ListKey.at(k))
+                    n++;
+            }
+        }
+
+
+        rep.insert(std::pair<int, int>(ListKey.at(k), n));
+    }
+
+    return rep;
 }

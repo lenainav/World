@@ -3,6 +3,8 @@
 
 #include "Point.h"
 #include <vector>
+#include <map>
+#include <string>
 
 class Monde
 {
@@ -21,10 +23,16 @@ class Monde
         int**   getWorld()                      {return World;}
         int     getCaseVal(Point pt)            {return getCaseVal(pt.x, pt.y);}
         int     getCaseVal(int x, int y)        {return World[x][y];}
+        int     getEntiePossible()              {return EntitePossible;}
+
+        std::vector<std::string>    getTypes()          {return Types;}
+        std::map<int, int>          getRepartition();
 
         //setters
         void    setCase(Point pt, int val)      {setCase(pt.x, pt.y, val);}
         void    setCase(int x, int y, int val)  {World[x][y] = val;}
+        void    addType(std::string s)          {Types.push_back(s);}
+        void    corresElem(std::string elem, int k) {TypesCorres.at(elem).push_back(k);}
 
         virtual void draw();
 
@@ -34,14 +42,13 @@ class Monde
         std::vector<int> ListKey;
         int EntitePossible;
 
+        std::vector<std::string> Types;
+        std::map<std::string, std::vector<int> > TypesCorres;
+
         Point Size;
 
     private:
         void listKey();
-
-
-
-
 };
 
 #endif // MONDE_H

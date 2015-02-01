@@ -3,6 +3,7 @@
 #include <SDL/SDL.h>
 #include <cstdlib>
 #include <vector>
+#include <ctime>
 
 #include <iostream>
 
@@ -10,12 +11,13 @@ MondeGraph::MondeGraph()
     : Monde()
 {
     //ctor
-    srand(NULL);
+    srand(time(NULL));
 }
 
 MondeGraph::~MondeGraph()
 {
     //dtor
+    SDL_FreeSurface(Tileset);
 }
 
 void MondeGraph::generate(int sx, int sy, int entite)
@@ -56,7 +58,7 @@ void MondeGraph::draw(SDL_Surface *screen)
         }
     }
 
-    SDL_Flip(Screen); ///!!!Possiblement a enlever, a independament
+    //SDL_Flip(Screen); ///!!!Possiblement a enlever, a independament
 }
 
 void MondeGraph::createNewTile(int key)

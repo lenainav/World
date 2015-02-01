@@ -27,6 +27,8 @@ class Entite
         virtual bool destroy();
         virtual bool appear();
 
+        virtual void generateKey();
+
 
     protected:
     private:

@@ -1,7 +1,7 @@
-
 #include "EntiteGraph.h"
 
-#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 #define CLRAND rand() % 255
 
@@ -10,12 +10,13 @@ EntiteGraph::EntiteGraph()
     //ctor
     Entite();
 
-    srand(NULL);
+    srand(time(NULL));
 }
 
 EntiteGraph::~EntiteGraph()
 {
     //dtor
+    SDL_FreeSurface(Graph);
 }
 
 void EntiteGraph::create()

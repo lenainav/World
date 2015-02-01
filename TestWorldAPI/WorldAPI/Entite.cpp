@@ -1,10 +1,12 @@
 #include "Entite.h"
 
-#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 
 Entite::Entite()
 {
     //ctor
+    srand(time(NULL));
 }
 
 Entite::~Entite()
@@ -76,4 +78,9 @@ bool Entite::appear()
     Alive = true;
 
     return true;
+}
+
+void Entite::generateKey()
+{
+    Key = rand() % 65536;
 }
