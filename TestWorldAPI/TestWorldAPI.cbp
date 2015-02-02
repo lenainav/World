@@ -14,7 +14,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add option="-std=c++0x" />
+					<Add option="-pedantic" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -30,20 +30,18 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-lmingw32" />
 					<Add option="-lSDLmain" />
 					<Add option="-lSDL" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-O" />
 			<Add option="-std=c++11" />
-			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/include" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32" />
 			<Add option="-lSDLmain" />
 			<Add option="-lSDL" />
 			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/lib" />

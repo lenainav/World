@@ -2,6 +2,11 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <functional>
+#include <lua5.1/lua.h>
+#include <lua5.1/lualib.h>
+#include <lua5.1/lauxlib.h>
+
 
 Entite::Entite()
 {
@@ -53,7 +58,7 @@ bool Entite::moveTop()
     return true;
 }
 
-bool Entite::moveBottom()
+bool Entite::moveDown()
 {
     Pos.y++;
 
@@ -64,6 +69,46 @@ bool Entite::moveBottom()
     }
 
     return true;
+}
+
+bool Entite::execChem(std::string *chem, bool all)
+{
+
+deb:
+
+    if (chem->size() == 0)
+        return true;
+
+    char c = chem->at(0);
+    bool r = false;
+
+    switch(c)
+    {
+    case 'l':
+        r = moveLeft();
+        break;
+
+    case 'r':
+        r = moveRight();
+        break;
+
+    case 'u':
+        r = moveTop();
+        break;
+
+    case 'd':
+        r = moveDown();
+        break;
+
+    default:
+        r = false;
+        break;
+    }
+
+    if (all)
+        goto deb;
+    else
+        return r;
 }
 
 bool Entite::destroy()
@@ -83,4 +128,59 @@ bool Entite::appear()
 void Entite::generateKey()
 {
     Key = rand() % 65536;
+}
+
+
+///scripts
+
+bool Entite::l_initLua()
+{
+    if ((Emul = lua_open()) == NULL)
+        return false;
+
+    luaL_openlibs(Emul);
+
+    //lua_register(Emul, "moveLeft", std::bind(this->l_moveLeft, std::placeholders::_1)) ;
+
+}
+
+bool Entite::l_loadScript(std::string script)
+{
+    if (!luaL_loadfile(Emul, script.c_str()))
+        return false;
+}
+
+bool Entite::l_callFunct(std::string script)
+{
+
+}
+
+int Entite::l_getLuaElem(lua_State *emul)
+{
+
+}
+
+int Entite::l_moveLeft(lua_State *emul)
+{
+    lua_pushboolean(emul, moveLeft());
+
+    return 1;
+}
+
+int Entite::l_moveRight(lua_State *emul)
+{
+    lua_pushboolean(emul, moveRight());
+    return 1;
+}
+
+int Entite::l_moveTop(lua_State* emul)
+{
+    lua_pushboolean(emul, moveTop());
+    return 1;
+}
+
+int Entite::l_moveDown(lua_State *emul)
+{
+    lua_pushboolean(emul, moveDown());
+    return 1;
 }

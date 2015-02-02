@@ -1,63 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="WorldAPI\EntiteGraph.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="985" topLine="5" />
-		</Cursor>
-		<Folding>
-			<Collapse line="21" />
-			<Collapse line="34" />
-		</Folding>
+	<File name="WorldAPI/Entite.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="21" topLine="2" />
 	</File>
-	<File name="WorldAPI\EntiteGraph.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="379" topLine="0" />
-		</Cursor>
+	<File name="WorldAPI/Entite.h" open="1" top="0" tabpos="3">
+		<Cursor position="939" topLine="23" />
 	</File>
-	<File name="WorldAPI\Monde.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1364" topLine="65" />
-		</Cursor>
+	<File name="WorldAPI/EntiteGraph.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="241" topLine="0" />
 	</File>
-	<File name="WorldAPI\Monde.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="906" topLine="4" />
-		</Cursor>
+	<File name="WorldAPI/EntiteGraph.h" open="0" top="0" tabpos="5">
+		<Cursor position="302" topLine="0" />
 	</File>
-	<File name="WorldAPI\MondeGraph.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="152" topLine="16" />
-		</Cursor>
+	<File name="WorldAPI/Monde.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2157" topLine="92" />
 	</File>
-	<File name="WorldAPI\MondeGraph.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="684" topLine="2" />
-		</Cursor>
+	<File name="WorldAPI/Monde.h" open="1" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="WorldAPI\Point.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="122" topLine="0" />
-		</Cursor>
+	<File name="WorldAPI/MondeGraph.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1747" topLine="42" />
 	</File>
-	<File name="WorldAPI\Point.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="61" topLine="0" />
-		</Cursor>
+	<File name="WorldAPI/MondeGraph.h" open="0" top="0" tabpos="4">
+		<Cursor position="197" topLine="5" />
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1288" topLine="50" />
-		</Cursor>
+	<File name="WorldAPI/Point.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="456" topLine="8" />
 	</File>
-	<File name="WorldAPI\Entite.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="346" topLine="46" />
-		</Cursor>
+	<File name="WorldAPI/Point.h" open="0" top="0" tabpos="0">
+		<Cursor position="59" topLine="0" />
 	</File>
-	<File name="WorldAPI\Entite.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="289" topLine="2" />
-		</Cursor>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1137" topLine="25" />
 	</File>
 </CodeBlocks_layout_file>

@@ -11,10 +11,12 @@
 
 using namespace std;
 
+
 int main(int argc, char** argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
         exit(-1);
+
 
     SDL_Surface *screen;
     SDL_Event event;
@@ -33,9 +35,7 @@ int main(int argc, char** argv)
     cout << "\nx:" << entite.World->getSize().x << " y:" << entite.World->getSize().y;
 
 
-
     screen = SDL_SetVideoMode(NTX * STX, NTY * STY, 8, SDL_HWSURFACE);
-
 
 
     while (ctn)
@@ -55,7 +55,7 @@ int main(int argc, char** argv)
                 entite.moveTop();
                 break;
             case SDLK_DOWN:
-                entite.moveBottom();
+                entite.moveDown();
                 break;
             case SDLK_LEFT:
                 entite.moveLeft();
