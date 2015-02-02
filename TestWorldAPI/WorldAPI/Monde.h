@@ -25,13 +25,20 @@ class Monde
         int     getCaseVal(int x, int y)        {return World[x][y];}
         int     getEntiePossible()              {return EntitePossible;}
 
+            //Info complementaire monde
         std::vector<std::string>    getTypes()          {return Types;}
         std::map<int, int>          getRepartition();
 
+            //vision
+        std::vector<std::vector<int>> getVision(Point pos, int range);
+        int     getMinimalDist(Point a, Point b);
+
+
         //setters
-        void    setCase(Point pt, int val)      {setCase(pt.x, pt.y, val);}
-        void    setCase(int x, int y, int val)  {World[x][y] = val;}
-        void    addType(std::string s)          {Types.push_back(s);}
+        void    setCase(Point pt, int val)          {setCase(pt.x, pt.y, val);}
+        void    setCase(int x, int y, int val)      {World[x][y] = val;}
+            //info comp
+        void    addType(std::string s)              {Types.push_back(s);}
         void    corresElem(std::string elem, int k) {TypesCorres.at(elem).push_back(k);}
 
         virtual void draw();

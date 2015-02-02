@@ -52,7 +52,7 @@ int main(int argc, char** argv)
             switch(event.key.keysym.sym)
             {
             case SDLK_UP:
-                entite.moveTop();
+                entite.moveUp();
                 break;
             case SDLK_DOWN:
                 entite.moveDown();

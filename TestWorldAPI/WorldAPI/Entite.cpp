@@ -46,7 +46,7 @@ bool Entite::moveRight()
     return true;
 }
 
-bool Entite::moveTop()
+bool Entite::moveUp()
 {
     Pos.y--;
     if (Pos.y < 0)
@@ -93,7 +93,7 @@ deb:
         break;
 
     case 'u':
-        r = moveTop();
+        r = moveUp();
         break;
 
     case 'd':
@@ -132,6 +132,7 @@ void Entite::generateKey()
 
 
 ///scripts
+/*
 
 bool Entite::l_initLua()
 {
@@ -173,9 +174,9 @@ int Entite::l_moveRight(lua_State *emul)
     return 1;
 }
 
-int Entite::l_moveTop(lua_State* emul)
+int Entite::l_moveUp(lua_State* emul)
 {
-    lua_pushboolean(emul, moveTop());
+    lua_pushboolean(emul, moveUp());
     return 1;
 }
 
@@ -184,3 +185,4 @@ int Entite::l_moveDown(lua_State *emul)
     lua_pushboolean(emul, moveDown());
     return 1;
 }
+*/

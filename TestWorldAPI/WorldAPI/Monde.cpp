@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include <cmath>
 
 Monde::Monde()
 {
@@ -120,3 +121,28 @@ std::map<int, int>  Monde::getRepartition()
 
     return rep;
 }
+
+std::vector<std::vector<int>> Monde::getVision(Point pos, int range)
+{
+    std::vector<std::vector<int>> vision;
+    for (int x = 0; x = (2*range) + 1; x++)
+    {
+        for (int y = 0; y < (2*range) +1; y++)
+        {
+            Point pt(x + range -1, y = range - 1);
+
+            if (getMinimalDist(pos, pt) == 0 || getMinimalDist(pos, pt) > range)
+                vision[x][y] = -1;
+            else
+                vision[x][y] = World[pt.x][pt.y];
+        }
+    }
+
+    return vision;
+}
+
+int Monde::getMinimalDist(Point a, Point b)
+{
+    return abs(a.x - b.x) + abs(a.y - b.y);
+}
+
