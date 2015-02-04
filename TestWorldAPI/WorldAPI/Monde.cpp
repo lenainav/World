@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ctime>
 #include <cmath>
+#include <vector>
 
 Monde::Monde()
 {
@@ -124,19 +125,32 @@ std::map<int, int>  Monde::getRepartition()
 
 std::vector<std::vector<int>> Monde::getVision(Point pos, int range)
 {
-    std::vector<std::vector<int>> vision;
-    for (int x = 0; x = (2*range) + 1; x++)
-    {
-        for (int y = 0; y < (2*range) +1; y++)
-        {
-            Point pt(x + range -1, y = range - 1);
+    Point sizev(2 * range + 1, 2 *range +1);
+    Point rpos(pos.x - range -1, pos.y - range - 1);
 
-            if (getMinimalDist(pos, pt) == 0 || getMinimalDist(pos, pt) > range)
-                vision[x][y] = -1;
-            else
-                vision[x][y] = World[pt.x][pt.y];
+    std::vector<std::vector<int>> vision;
+
+    for (int x = 0; x <= sizev.x; x++)
+    {
+        vision.push_back(std::vector<int>());
+
+        for (int y = 0; y <= sizev.y; y++)
+        {
+            vision.at(x).push_back(-1);
+
+            if ((rpos.x >= 0 && rpos.x < Size.x) && (rpos.y >= 0 && rpos.y < Size.y))
+            {
+                if (getMinimalDist(pos, rpos) <= range)
+                    vision.at(x).at(y) = World[rpos.x][rpos.y];
+            }
+
+            rpos.y++;
+
         }
+        rpos.y = pos.y - range -1;
+        rpos.x++;
     }
+
 
     return vision;
 }

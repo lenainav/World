@@ -63,9 +63,24 @@ int main(int argc, char** argv)
             case SDLK_RIGHT:
                 entite.moveRight();
                 break;
-            default:
+
+            case SDLK_a:
+                std::vector<std::vector<int>> vis = monde.getVision(entite.Pos, 2);
+                cout << "\n";
+
+                for (int y = 0; y < vis[0].size(); y++)
+                {
+                    for (int x = 0; x < vis.size(); x++)
+                        cout << vis[x][y] << " ";
+                    cout << "\n";
+                }
+
+
                 break;
             }
+
+            cout << monde.getMinimalDist(Point(0, 0), entite.Pos) << endl;
+            break;
 
         }
 
