@@ -27,7 +27,6 @@ int main(int argc, char** argv)
     monde.setTileSize(Point(STX, STY));
     monde.generate(NTX, NTY, 10);
 
-    //entite.World = &monde;
     entite.World = &monde;
     entite.WorldSize = monde.getSize();
     entite.create();
@@ -79,13 +78,14 @@ int main(int argc, char** argv)
                 break;
             }
 
-            cout << monde.getMinimalDist(Point(0, 0), entite.Pos) << endl;
             break;
 
         }
 
-        SDL_FillRect(screen, NULL, 0x000000);
-        monde.draw(screen);
+        SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 255, 255, 255));
+        //monde.draw(screen);
+        monde.drawVision(entite.Pos, 5, screen);
+
         entite.draw(screen);
         SDL_Flip(screen);
     }

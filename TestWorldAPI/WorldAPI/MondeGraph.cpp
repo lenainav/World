@@ -30,7 +30,6 @@ void MondeGraph::generate(int sx, int sy, int entite)
         createNewTile(ListKey.at(i));
 }
 
-
 void MondeGraph::draw(SDL_Surface *screen)
 {
     if (screen != NULL) //changement de screen
@@ -60,6 +59,36 @@ void MondeGraph::draw(SDL_Surface *screen)
 
     //SDL_Flip(Screen); ///!!!Possiblement a enlever, a independament
 }
+
+void MondeGraph::drawVision(Point pos, int range, SDL_Surface *screen)
+{
+    //init pos
+    SDL_Rect bcks = {0,0, TileSize.x, TileSize.y};
+
+    //init surfaces /graphiques
+    SDL_Surface *back = SDL_CreateRGBSurface(SDL_HWSURFACE, TileSize.x, TileSize.y, 8, 0, 0, 0, 0);
+
+    SDL_FillRect(back, &bcks, SDL_MapRGB(back->format, 0,0,0));
+
+    //dessin de la map
+    draw(screen);
+
+    for (int x = 0; x < Size.x; x++)
+    {
+        for (int y = 0; y < Size.y; y++)
+        {
+            SDL_Rect dest = {x * TileSize.x, y * TileSize.y, TileSize.x, TileSize.y};
+
+            if (getMinimalDist(pos, Point(x, y)) > range)
+            {
+                SDL_BlitSurface(back, &bcks, Screen, &dest);
+            }
+
+        }
+    }
+
+}
+
 
 void MondeGraph::createNewTile(int key)
 {

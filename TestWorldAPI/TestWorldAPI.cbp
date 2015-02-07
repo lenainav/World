@@ -42,6 +42,7 @@
 			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/include" />
 		</Compiler>
 		<Linker>
+			<Add option="-lmingw32" />
 			<Add option="-lSDLmain" />
 			<Add option="-lSDL" />
 			<Add directory="../../../../../CodeBlocks/SDL-1.2.15/lib" />

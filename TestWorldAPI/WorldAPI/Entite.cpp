@@ -2,10 +2,6 @@
 
 #include <cstdlib>
 #include <ctime>
-#include <functional>
-#include <lua5.1/lua.h>
-#include <lua5.1/lualib.h>
-#include <lua5.1/lauxlib.h>
 
 
 Entite::Entite()
@@ -130,59 +126,3 @@ void Entite::generateKey()
     Key = rand() % 65536;
 }
 
-
-///scripts
-/*
-
-bool Entite::l_initLua()
-{
-    if ((Emul = lua_open()) == NULL)
-        return false;
-
-    luaL_openlibs(Emul);
-
-    //lua_register(Emul, "moveLeft", std::bind(this->l_moveLeft, std::placeholders::_1)) ;
-
-}
-
-bool Entite::l_loadScript(std::string script)
-{
-    if (!luaL_loadfile(Emul, script.c_str()))
-        return false;
-}
-
-bool Entite::l_callFunct(std::string script)
-{
-
-}
-
-int Entite::l_getLuaElem(lua_State *emul)
-{
-
-}
-
-int Entite::l_moveLeft(lua_State *emul)
-{
-    lua_pushboolean(emul, moveLeft());
-
-    return 1;
-}
-
-int Entite::l_moveRight(lua_State *emul)
-{
-    lua_pushboolean(emul, moveRight());
-    return 1;
-}
-
-int Entite::l_moveUp(lua_State* emul)
-{
-    lua_pushboolean(emul, moveUp());
-    return 1;
-}
-
-int Entite::l_moveDown(lua_State *emul)
-{
-    lua_pushboolean(emul, moveDown());
-    return 1;
-}
-*/

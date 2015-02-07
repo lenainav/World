@@ -3,7 +3,6 @@
 
 #include "Point.h"
 #include "Monde.h"
-#include <lua5.1/lua.h>
 #include <string>
 
 class Entite
@@ -33,27 +32,10 @@ class Entite
 
         virtual void generateKey();
 
-        ///scripts
-
-        bool l_initLua();
-        bool l_loadScript(std::string script);
-        bool l_callFunct(std::string script);
 
     protected:
 
-        //scripts
-        lua_State *Emul;
-        bool LuaActive;
-
     private:
-
-        //scripts
-        int l_getLuaElem(lua_State *emul);
-        int l_moveLeft(lua_State *emul);
-        int l_moveRight(lua_State *emul);
-        int l_moveUp(lua_State* emul);
-        int l_moveDown(lua_State *emul);
-
 
 
 };

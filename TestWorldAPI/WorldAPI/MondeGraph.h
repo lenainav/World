@@ -14,6 +14,7 @@ class MondeGraph : public Monde
         virtual void generate(int x, int y, int entite);
 
         virtual void draw(SDL_Surface *screen = NULL);
+        virtual void drawVision(Point pos, int range, SDL_Surface *screen = NULL);
 
         virtual void setTileSize(Point sz) {TileSize = sz;}
         virtual Point getTileSize() {return TileSize;}
