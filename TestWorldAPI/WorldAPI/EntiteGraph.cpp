@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#define CLRAND rand() % 255
+#define CLRAND (rand() % 245) + 10
 
 EntiteGraph::EntiteGraph()
 {

@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#define RAND (rand() % 235) + 20
+
 MondeGraph::MondeGraph()
     : Monde()
 {
@@ -62,6 +64,13 @@ void MondeGraph::draw(SDL_Surface *screen)
 
 void MondeGraph::drawVision(Point pos, int range, SDL_Surface *screen)
 {
+    if (screen != NULL)
+        Screen = screen;
+
+    if (Screen == NULL)
+        return;
+
+
     //init pos
     SDL_Rect bcks = {0,0, TileSize.x, TileSize.y};
 
@@ -70,8 +79,6 @@ void MondeGraph::drawVision(Point pos, int range, SDL_Surface *screen)
 
     SDL_FillRect(back, &bcks, SDL_MapRGB(back->format, 0,0,0));
 
-    //dessin de la map
-    draw(screen);
 
     for (int x = 0; x < Size.x; x++)
     {
@@ -79,9 +86,15 @@ void MondeGraph::drawVision(Point pos, int range, SDL_Surface *screen)
         {
             SDL_Rect dest = {x * TileSize.x, y * TileSize.y, TileSize.x, TileSize.y};
 
-            if (getMinimalDist(pos, Point(x, y)) > range)
+            if (getMinimalDist(pos, Point(x, y)) > range) //dessin de la map ou remplissage de noir
             {
                 SDL_BlitSurface(back, &bcks, Screen, &dest);
+            }
+            else
+            {
+                SDL_Rect src = {World[x][y] * TileSize.x, 0, TileSize.x, TileSize.y};
+
+                SDL_BlitSurface(Tileset, &src, Screen, &dest);
             }
 
         }
@@ -92,7 +105,7 @@ void MondeGraph::drawVision(Point pos, int range, SDL_Surface *screen)
 
 void MondeGraph::createNewTile(int key)
 {
-    int red = rand()%255, green = rand()%255, blue = rand()%255; //init couleurs
+    int red = RAND, green = RAND, blue = RAND; //init couleurs
     SDL_Rect dest = {0}; //init dest
     dest.h = TileSize.y; dest.w = TileSize.x;
     dest.x = key * TileSize.x;

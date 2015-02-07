@@ -3,11 +3,11 @@
 #include "WorldAPI/MondeGraph.h"
 #include "WorldAPI/EntiteGraph.h"
 
-#define NTX 10
-#define NTY 10
+#define NTX 30
+#define NTY 30
 
-#define STX 50
-#define STY 50
+#define STX 20
+#define STY 20
 
 using namespace std;
 
@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 
         SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 255, 255, 255));
         //monde.draw(screen);
-        monde.drawVision(entite.Pos, 5, screen);
+        monde.drawVision(entite.Pos, 4, screen);
 
         entite.draw(screen);
         SDL_Flip(screen);
