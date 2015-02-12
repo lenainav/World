@@ -100,6 +100,8 @@ void MondeGraph::drawVision(Point pos, int range, SDL_Surface *screen)
         }
     }
 
+
+    SDL_FreeSurface(back);
 }
 
 

@@ -4,6 +4,7 @@
 #include "Point.h"
 #include "Monde.h"
 #include <string>
+#include <vector>
 
 class Entite
 {
@@ -12,11 +13,11 @@ class Entite
         virtual ~Entite();
 
         Monde *World;
-        Point WorldSize; //le pointeur du World marche mais pas pour getSize() donc...
 
         Point Pos;
         int Key;
         bool Alive;
+        int VisionRange;
 
         virtual void draw();
 
@@ -33,8 +34,16 @@ class Entite
         virtual void generateKey();
 
 
-    protected:
+        void setWorld(Monde *monde)     {World = monde;}
 
+        bool isBlocked(int key);
+        void addBlocked(int key)        {BlockedCase.push_back(key);}
+        std::vector<int> getBlocked()   {return BlockedCase;}
+
+
+
+    protected:
+        std::vector<int> BlockedCase;
     private:
 
 

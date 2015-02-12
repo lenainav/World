@@ -160,3 +160,14 @@ int Monde::getMinimalDist(Point a, Point b)
     return abs(a.x - b.x) + abs(a.y - b.y);
 }
 
+
+bool Monde::isBlocked(int key)
+{
+    for (int i = 0; i < BlockedCase.size(); i++)
+    {
+        if (BlockedCase[i] == key)
+            return true;
+    }
+
+    return false;
+}
