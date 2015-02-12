@@ -12,13 +12,13 @@ class EntiteGraph : public Entite
         virtual ~EntiteGraph();
 
         SDL_Surface *Screen;
-        MondeGraph *World;
+        MondeGraph *WorldG;
 
         virtual void create();
         virtual void draw(SDL_Surface *screen);
 
         SDL_Rect setrp(); //def la RealPos
-
+        void setWorld(MondeGraph &monde);
 
 
     protected:

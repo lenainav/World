@@ -16,3 +16,23 @@ Point::~Point()
 {
     //dtor
 }
+
+bool Point::equal(Point &b)
+{
+    return b.x == x && b.y == y;
+}
+
+bool Point::operator==( Point &pb)
+{
+    return equal(pb);
+}
+
+Point Point::operator+(Point &pb)
+{
+    return Point(x +pb.x, y + pb.y);
+}
+
+Point Point::operator-(Point &pb)
+{
+    return Point(x - pb.x, y - pb.y);
+}

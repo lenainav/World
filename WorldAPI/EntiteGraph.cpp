@@ -1,26 +1,34 @@
-
 #include "EntiteGraph.h"
 
-#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
-#define CLRAND rand() % 255
+#define CLRAND (rand() % 245) + 10
 
 EntiteGraph::EntiteGraph()
 {
     //ctor
     Entite();
 
-    srand(NULL);
+    srand(time(NULL));
 }
 
 EntiteGraph::~EntiteGraph()
 {
     //dtor
+    SDL_FreeSurface(Graph);
 }
+
+void EntiteGraph::setWorld(MondeGraph &monde)
+{
+    WorldG = &monde;
+    Entite::World = (Monde*) &monde;
+}
+
 
 void EntiteGraph::create()
 {
-    Point pt = World->getTileSize();
+    Point pt = WorldG->getTileSize();
     SDL_Rect dst = {0};
 
     Graph = SDL_CreateRGBSurface(SDL_HWSURFACE, pt.x - (pt.x * 0.2), pt.y - (pt.y * 0.2), 8, 0,255,0,0);
@@ -42,7 +50,7 @@ void EntiteGraph::draw(SDL_Surface *screen)
 
 SDL_Rect EntiteGraph::setrp()
 {
-    Point pt = World->getTileSize();
+    Point pt = WorldG->getTileSize();
 
     RealPos.x = Pos.x * pt.x + (pt.x * 0.1);
     RealPos.y = Pos.y * pt.y + (pt.y * 0.1);

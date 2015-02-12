@@ -1,10 +1,14 @@
 #include "Entite.h"
 
-#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
 
 Entite::Entite()
 {
     //ctor
+    srand(time(NULL));
 }
 
 Entite::~Entite()
@@ -18,9 +22,9 @@ void Entite::draw()
 bool Entite::moveLeft()
 {
     Pos.x--;
-    if (Pos.x < 0)
+    if (Pos.x < 0 || isBlocked(World->getCaseVal(Pos.x, Pos.y)) || World->isBlocked(World->getCaseVal(Pos)) )
     {
-        Pos.x = WorldSize.x -1;
+        Pos.x++;
         return false;
     }
 
@@ -30,38 +34,81 @@ bool Entite::moveLeft()
 bool Entite::moveRight()
 {
     Pos.x++;
-    if (Pos.x >= WorldSize.x)
+    if (Pos.x >= World->getSize().x || isBlocked(World->getCaseVal(Pos))|| World->isBlocked(World->getCaseVal(Pos)))
     {
-        Pos.x = 0;
+        Pos.x--;
         return false;
     }
 
     return true;
 }
 
-bool Entite::moveTop()
+bool Entite::moveUp()
 {
     Pos.y--;
-    if (Pos.y < 0)
+    if (Pos.y < 0 || isBlocked(World->getCaseVal(Pos)) || World->isBlocked(World->getCaseVal(Pos)))
     {
-        Pos.y = WorldSize.y -1;
+        Pos.y++;
         return false;
     }
 
     return true;
 }
 
-bool Entite::moveBottom()
+bool Entite::moveDown()
 {
     Pos.y++;
 
-    if (Pos.y >= WorldSize.y)
+    if (Pos.y >= World->getSize().y || isBlocked(World->getCaseVal(Pos)) || World->isBlocked(World->getCaseVal(Pos)))
     {
-        Pos.y = 0;
+        Pos.y--;
         return false;
     }
 
     return true;
+}
+
+bool Entite::execChem(std::string *chem, bool all)
+{
+    bool r = false;
+
+    do
+    {
+
+    if (chem->size() == 0)
+        return true;
+
+    char c = chem->at(0);
+    chem->erase(0, 1);
+
+    r = false;
+
+    switch(c)
+    {
+    case 'l':
+        r = moveLeft();
+        break;
+
+    case 'r':
+        r = moveRight();
+        break;
+
+    case 'u':
+        r = moveUp();
+        break;
+
+    case 'd':
+        r = moveDown();
+        break;
+
+    default:
+        r = false;
+        break;
+    }
+
+    }while(all);
+
+    return r;
 }
 
 bool Entite::destroy()
@@ -76,4 +123,20 @@ bool Entite::appear()
     Alive = true;
 
     return true;
+}
+
+void Entite::generateKey()
+{
+    Key = rand() % 65536;
+}
+
+bool Entite::isBlocked(int key)
+{
+    for (unsigned int i = 0; i < BlockedCase.size(); i++)
+    {
+        if (BlockedCase[i] == key)
+            return true;
+    }
+
+    return false;
 }

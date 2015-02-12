@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/WorldAPI" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/libWorldAPI" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="obj/Debug/" />
 				<Option type="2" />
@@ -23,16 +23,17 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/WorldAPI" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/libWorldAPI" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="obj/Release/" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wfatal-errors" />
 					<Add option="-Wall" />
 					<Add option="-DBUILD_DLL" />
-					<Add option="-O2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

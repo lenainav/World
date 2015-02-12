@@ -9,6 +9,11 @@ class Point //Un Point.
         Point(int, int);
         virtual ~Point();
 
+        bool equal(Point &b);
+        bool operator==(Point &pb);
+        Point operator+(Point &pb);
+        Point operator-(Point &pb);
+
         int x;
         int y;
 

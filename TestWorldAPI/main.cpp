@@ -28,8 +28,7 @@ int main(int argc, char** argv)
     monde.generate(NTX, NTY, 10);
     monde.addBlocked(2);
 
-    /*entite.WorldG = &monde;
-    entite.World = (Monde*) &monde;*/
+
     entite.setWorld(monde);
     entite.addBlocked(1);
 
